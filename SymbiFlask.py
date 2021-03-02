@@ -53,9 +53,9 @@ def RunSymbiFlow(prj_id):
     PRJ_DIR_HOST = os.path.join(os.getcwd(), prj_data.Project_name + "_" + fpga_data.model_id)
     # create the docker cmd
     cmd = ("docker run --rm -it"
-           " -e PART_NAME=" + PART_NAME + " -e TOP_FILE=" + TOP_FILE + " -e PRJ_DIR=" + PRJ_DIR +
+           " -e BOARD_MODEL=" + PART_NAME + " -e TOP_FILE=" + TOP_FILE + " -e PRJ_DIR=" + PRJ_DIR +
            " --privileged -v /dev/bus/usb:/dev/bus/usb" + " -v " + PRJ_DIR_HOST + ":" + PRJ_DIR +
-           " symbiflow:latest")
+           " symbiflow:" + PART_NAME)
 
     # debug print
     print(cmd)
