@@ -196,7 +196,7 @@ class manage_fpga(Resource):
 
                 # check for FPGA exixstance
                 if data is None:
-                    return "Error: The FPGA doesn't exist", 404
+                    return "Error: The FPGA doesn't exist", 412
 
                 family = request.json['family']
                 model_id = request.json['model_id']
@@ -234,7 +234,7 @@ class manage_fpga(Resource):
 
                 # check for FPGA exixstance
                 if fpga_data is None:
-                    return "Error: The FPGA doesn't exist", 404
+                    return "Error: The FPGA doesn't exist", 412
 
                 db.session.delete(fpga_data)
                 db.session.commit()
@@ -357,7 +357,7 @@ class manage_project(Resource):
 
                 # check if exists
                 if data is None:
-                    return "Error: project doesn't exists", 404
+                    return "Error: project doesn't exists", 412
 
                 # finding folder name for proj
                 Curr = os.getcwd()
@@ -415,7 +415,7 @@ class manage_HDL_file(Resource):
         # check project existance
         project_data = Project.query.get(Project_id)
         if project_data is None:
-            return "Error: The project doesn't exist", 404
+            return "Error: The project doesn't exist", 412
 
         # check if HDL it exists
         check = HDL_file.query.filter_by(Project_id=Project_id, file_name=hdl.filename).first()
@@ -461,15 +461,15 @@ class manage_HDL_file(Resource):
 
                 # check if HDL file is on record
                 if data is None:
-                    return "Error: HDL file doesn't exist", 404
+                    return "Error: HDL file doesn't exist", 412
 
-                # fetch file from request
+                # fetch data from request
                 hdl = request.files.get('file')
+                json_data = json.loads(request.form['json'])
 
                 # fetch json data
-                db_data = json.loads(request.form.getlist('json')[0])
-                Project_id = db_data["Project_id"]
-                top_level_flag = db_data["top_level_flag"]
+                Project_id = json_data['Project_id']
+                top_level_flag = json_data['top_level_flag']
 
                 # get old file path
                 Curr = os.getcwd()
@@ -512,7 +512,7 @@ class manage_HDL_file(Resource):
 
                 # check if HDL file is on record
                 if data is None:
-                    return "Error: HDL file doesn't exist", 404
+                    return "Error: HDL file doesn't exist", 412
 
                 # finding file name for HDL
                 Curr = os.getcwd()
@@ -550,7 +550,7 @@ class run_symbiflow(Resource):
             # get project data
             data = Project.query.get(id)
             if not data:
-                return "Error: The Project doesn't exist", 404
+                return "Error: The Project doesn't exist", 412
             # run symbiflow
             check = RunSymbiFlow(id, mode)
             if (int(mode) == 1):
