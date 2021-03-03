@@ -178,7 +178,7 @@ class manage_fpga(Resource):
             print(e)
             return "Error: insertion aborted", 500
         else:
-            return "Success: insertion done", 200
+            return "Success: insertion done", 201
 
     # UPDATE FPGA
     @staticmethod
@@ -295,7 +295,7 @@ class manage_project(Resource):
             print(e)
             return "Error: insertion aborted", 500
         else:
-            return "Success: insertion done", 200
+            return "Success: insertion done", 201
 
     # UPDATE Project
     @staticmethod
@@ -443,7 +443,7 @@ class manage_HDL_file(Resource):
             print(e)
             return "Error: insertion aborted", 500
         else:
-            return "Success: insertion done", 200
+            return "Success: insertion done", 201
 
     # UPDATE HDL_file
     @staticmethod
