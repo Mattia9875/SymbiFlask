@@ -404,13 +404,13 @@ class manage_HDL_file(Resource):
     # INSERT HDL_file
     @staticmethod
     def post():
-        # fetch file from request
+        # fetch data from request
         hdl = request.files.get('file')
+        json_data = json.loads(request.form['json'])
 
         # fetch json data
-        db_data = json.loads(request.form.getlist('json')[0])
-        Project_id = db_data["Project_id"]
-        top_level_flag = db_data["top_level_flag"]
+        Project_id = json_data['Project_id']
+        top_level_flag = json_data['top_level_flag']
 
         # check project existance
         project_data = Project.query.get(Project_id)
@@ -562,7 +562,7 @@ class run_symbiflow(Resource):
                 if check:
                     return "Error: Something went wrong during configuration", 500
                 else:
-                    return "Success: Design compiled without problems", 200
+                    return "Success: Design compiled without problems", 201
 
 
 # Setting website resources
