@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
 from flask_marshmallow import Marshmallow
-import os, json
+import os, json, shutil
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,13 +18,10 @@ ma = Marshmallow(app)
 # function to recursively delete a project dir
 def RecursiveHDLDelete(query_id, dir_name):
     try:
-        # gather the file and record list
-        dir_list = os.listdir(dir_name)
+        # gather record list
         db_list = HDL_file.query.filter_by(Project_id=query_id).all()
-        # cycle files
-        for file_name in dir_list:
-            file_path = os.path.join(dir_name, file_name)
-            os.remove(file_path)
+        # delete directory
+        shutil.rmtree(dir_name, ignore_errors=True)
         # cycle records
         for row in db_list:
             db.session.delete(row)
@@ -370,7 +367,6 @@ class manage_project(Resource):
                 # remove the project
                 db.session.delete(data)
                 db.session.commit()
-                os.rmdir(dir_name)
             except Exception as e:
                 print(e)
                 return "Error: deletion aborted", 500
