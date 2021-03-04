@@ -1,0 +1,156 @@
+{
+	"id": "3d1b6a92-d6d9-4c60-b600-ec0fae74b887",
+	"name": "SymbiFlast Testing",
+	"timestamp": "2021-03-04T11:26:02.527Z",
+	"collection_id": "79b9a826-7681-4465-af7e-c3766cf67829",
+	"folder_id": "7d24ec62-355c-4f88-a6fd-7033cbda259a",
+	"environment_id": "0",
+	"totalPass": 15,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "9ee13bae-3e5e-4d78-911a-270cfb6e707b",
+			"name": "Compile and upload counter_test",
+			"time": 130374,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				127808,
+				129711,
+				129916,
+				129402,
+				130374
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "8f1488c4-6ec4-476a-979b-580eb893f003",
+			"name": "Compile counter_test",
+			"time": 124367,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				131329,
+				159012,
+				123860,
+				124778,
+				124367
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				},
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "fc642218-b717-40b7-a4fd-5494e6b5fbfd",
+			"name": "Upload counter_test",
+			"time": 7177,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 5,
+					"fail": 0
+				}
+			},
+			"times": [
+				7803,
+				7394,
+				7260,
+				7506,
+				7177
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				},
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 5,
+	"totalTime": 1347697,
+	"collection": {
+		"requests": [
+			{
+				"id": "9ee13bae-3e5e-4d78-911a-270cfb6e707b",
+				"method": "POST"
+			},
+			{
+				"id": "8f1488c4-6ec4-476a-979b-580eb893f003",
+				"method": "POST"
+			},
+			{
+				"id": "fc642218-b717-40b7-a4fd-5494e6b5fbfd",
+				"method": "POST"
+			}
+		]
+	}
+}

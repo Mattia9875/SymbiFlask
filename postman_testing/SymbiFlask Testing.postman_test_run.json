@@ -1,0 +1,885 @@
+{
+	"id": "60e34114-a360-4dba-951c-7f78b1a28ba5",
+	"name": "SymbiFlast Testing",
+	"timestamp": "2021-03-04T10:59:23.144Z",
+	"collection_id": "79b9a826-7681-4465-af7e-c3766cf67829",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 32,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "3e7de8da-10b7-4276-8eb5-87a40b156f09",
+			"name": "CREATE xc7a50t",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 160,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				160
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "df189160-d544-4230-b9d0-6e082588945a",
+			"name": "CREATE xc7a100t",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 67,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "a12dfa98-61bc-4e21-942c-7e41c9502263",
+			"name": "CREATE xc7a200t",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 75,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "48481585-bde6-4fab-ac09-e4da28ea3e5f",
+			"name": "CREATE xc7z010",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 56,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "fbbd6d4a-d742-42de-8af2-a1726aa7b185",
+			"name": "CREATE already existing xc7z010",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 42,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "d4dcc501-487b-4366-a3c5-9dcca2333567",
+			"name": "READ first database entry",
+			"url": "http://192.168.178.28:5000/fpga?id=1",
+			"time": 45,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"JSON data is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON data is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				45
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"JSON data is correct": true
+				}
+			]
+		},
+		{
+			"id": "e7c1da67-55d9-4fbb-b6d5-c3532ee86c7f",
+			"name": "READ 4th database entry",
+			"url": "http://192.168.178.28:5000/fpga?id=4",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"JSON data is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON data is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"JSON data is correct": true
+				}
+			]
+		},
+		{
+			"id": "2705c605-4a96-442c-a2c6-d33f807bd76f",
+			"name": "READ FPGA that doesn't exist",
+			"url": "http://192.168.178.28:5000/fpga?id=8",
+			"time": 39,
+			"responseCode": {
+				"code": 404,
+				"name": "NOT FOUND"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				39
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "d6eb4a52-31bb-4968-b273-4f561111c606",
+			"name": "READ without ID",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 76,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				76
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "167a3b22-8129-4cc5-a2ff-09a3749c6612",
+			"name": "UPDATE xc7a200t to xc7a200t_test",
+			"url": "http://192.168.178.28:5000/fpga?id=3",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "ecfaf653-d3ea-418b-bda1-c8e194f388a8",
+			"name": "UPDATE without ID",
+			"url": "http://192.168.178.28:5000/fpga",
+			"time": 44,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "e53f4618-37d1-4d2c-9be4-fc28e72a17d0",
+			"name": "READ modified entry",
+			"url": "http://192.168.178.28:5000/fpga?id=3",
+			"time": 41,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"JSON data is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON data is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				41
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"JSON data is correct": true
+				}
+			]
+		},
+		{
+			"id": "e0ee417a-ee89-49ed-9368-d20231daf735",
+			"name": "DELETE mofied entry",
+			"url": "http://192.168.178.28:5000/fpga?id=3",
+			"time": 63,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e9bac25d-ba67-4898-bd38-bfc44759a8f8",
+			"name": "DELETE FPGA that doesn't exist",
+			"url": "http://192.168.178.28:5000/fpga?id=7",
+			"time": 35,
+			"responseCode": {
+				"code": 412,
+				"name": "PRECONDITION FAILED"
+			},
+			"tests": {
+				"Status code is 412": true
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			]
+		},
+		{
+			"id": "a431be0a-d130-4334-9c14-9c404d5812f8",
+			"name": "UPDATE FPGA that doesn'exist",
+			"url": "http://192.168.178.28:5000/fpga?id=8",
+			"time": 35,
+			"responseCode": {
+				"code": 412,
+				"name": "PRECONDITION FAILED"
+			},
+			"tests": {
+				"Status code is 412": true
+			},
+			"testPassFailCounts": {
+				"Status code is 412": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 412": true
+				}
+			]
+		},
+		{
+			"id": "d5d0d672-8aab-4b40-977e-e765e9dc14d1",
+			"name": "CREATE counter_test project for xc7a100t",
+			"url": "http://192.168.178.28:5000/project",
+			"time": 58,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				58
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "2288ae35-ad4a-4a7b-882f-79e10a6a2593",
+			"name": "CREATE blink_rgb project for xc7a50t",
+			"url": "http://192.168.178.28:5000/project",
+			"time": 59,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "77227eaf-8b78-4d43-8dcd-0c3605c4afef",
+			"name": "READ first project",
+			"url": "http://192.168.178.28:5000/project?id=1",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"JSON data is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON data is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"JSON data is correct": true
+				}
+			]
+		},
+		{
+			"id": "ea1a1de9-740b-444f-9e94-8c357ef0e129",
+			"name": "READ Project that doesn't exist",
+			"url": "http://192.168.178.28:5000/project?id=8",
+			"time": 47,
+			"responseCode": {
+				"code": 404,
+				"name": "NOT FOUND"
+			},
+			"tests": {
+				"Status code is 404": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				47
+			],
+			"allTests": [
+				{
+					"Status code is 404": true
+				}
+			]
+		},
+		{
+			"id": "a41ae4a6-060b-40f6-a13b-3209658452b2",
+			"name": "UPDATE blink_rgb project",
+			"url": "http://192.168.178.28:5000/project?id=2",
+			"time": 66,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				66
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "62b11c02-af02-438f-9a54-9a459c0c944d",
+			"name": "UPDATE without ID",
+			"url": "http://192.168.178.28:5000/project",
+			"time": 31,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "ba64de8e-f7ca-4860-b339-c618b5abc288",
+			"name": "READ modified project",
+			"url": "http://192.168.178.28:5000/project?id=2",
+			"time": 46,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"JSON data is correct": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"JSON data is correct": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"JSON data is correct": true
+				}
+			]
+		},
+		{
+			"id": "288e6dbe-de75-4a19-a30f-4e12576a4879",
+			"name": "DELETE modified project",
+			"url": "http://192.168.178.28:5000/project?id=2",
+			"time": 56,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "a64b4e9f-c6b9-44c3-a88d-0c70df8e3759",
+			"name": "DELETE without ID",
+			"url": "http://192.168.178.28:5000/project",
+			"time": 65,
+			"responseCode": {
+				"code": 400,
+				"name": "BAD REQUEST"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				65
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "2a83e5c3-ca88-4f42-9f9c-b6427db909b6",
+			"name": "CREATE top.v to counter_test",
+			"url": "http://192.168.178.28:5000/file",
+			"time": 83,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				83
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "97cc2823-c62f-4368-8261-b5aa189d80d7",
+			"name": "CREATE arty.xdc to counter_test",
+			"url": "http://192.168.178.28:5000/file",
+			"time": 70,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				70
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "9ee13bae-3e5e-4d78-911a-270cfb6e707b",
+			"name": "Compile and upload counter_test",
+			"url": "http://192.168.178.28:5000/symbiflow?id=1&mode=2",
+			"time": 131545,
+			"responseCode": {
+				"code": 201,
+				"name": "CREATED"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				131545
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 133022,
+	"collection": {
+		"requests": [
+			{
+				"id": "3e7de8da-10b7-4276-8eb5-87a40b156f09",
+				"method": "POST"
+			},
+			{
+				"id": "df189160-d544-4230-b9d0-6e082588945a",
+				"method": "POST"
+			},
+			{
+				"id": "a12dfa98-61bc-4e21-942c-7e41c9502263",
+				"method": "POST"
+			},
+			{
+				"id": "48481585-bde6-4fab-ac09-e4da28ea3e5f",
+				"method": "POST"
+			},
+			{
+				"id": "fbbd6d4a-d742-42de-8af2-a1726aa7b185",
+				"method": "POST"
+			},
+			{
+				"id": "d4dcc501-487b-4366-a3c5-9dcca2333567",
+				"method": "GET"
+			},
+			{
+				"id": "e7c1da67-55d9-4fbb-b6d5-c3532ee86c7f",
+				"method": "GET"
+			},
+			{
+				"id": "2705c605-4a96-442c-a2c6-d33f807bd76f",
+				"method": "GET"
+			},
+			{
+				"id": "d6eb4a52-31bb-4968-b273-4f561111c606",
+				"method": "GET"
+			},
+			{
+				"id": "167a3b22-8129-4cc5-a2ff-09a3749c6612",
+				"method": "PUT"
+			},
+			{
+				"id": "ecfaf653-d3ea-418b-bda1-c8e194f388a8",
+				"method": "PUT"
+			},
+			{
+				"id": "e53f4618-37d1-4d2c-9be4-fc28e72a17d0",
+				"method": "GET"
+			},
+			{
+				"id": "e0ee417a-ee89-49ed-9368-d20231daf735",
+				"method": "DELETE"
+			},
+			{
+				"id": "e9bac25d-ba67-4898-bd38-bfc44759a8f8",
+				"method": "DELETE"
+			},
+			{
+				"id": "a431be0a-d130-4334-9c14-9c404d5812f8",
+				"method": "PUT"
+			},
+			{
+				"id": "d5d0d672-8aab-4b40-977e-e765e9dc14d1",
+				"method": "POST"
+			},
+			{
+				"id": "2288ae35-ad4a-4a7b-882f-79e10a6a2593",
+				"method": "POST"
+			},
+			{
+				"id": "77227eaf-8b78-4d43-8dcd-0c3605c4afef",
+				"method": "GET"
+			},
+			{
+				"id": "ea1a1de9-740b-444f-9e94-8c357ef0e129",
+				"method": "GET"
+			},
+			{
+				"id": "a41ae4a6-060b-40f6-a13b-3209658452b2",
+				"method": "PUT"
+			},
+			{
+				"id": "62b11c02-af02-438f-9a54-9a459c0c944d",
+				"method": "PUT"
+			},
+			{
+				"id": "ba64de8e-f7ca-4860-b339-c618b5abc288",
+				"method": "GET"
+			},
+			{
+				"id": "288e6dbe-de75-4a19-a30f-4e12576a4879",
+				"method": "DELETE"
+			},
+			{
+				"id": "a64b4e9f-c6b9-44c3-a88d-0c70df8e3759",
+				"method": "DELETE"
+			},
+			{
+				"id": "2a83e5c3-ca88-4f42-9f9c-b6427db909b6",
+				"method": "POST"
+			},
+			{
+				"id": "97cc2823-c62f-4368-8261-b5aa189d80d7",
+				"method": "POST"
+			},
+			{
+				"id": "9ee13bae-3e5e-4d78-911a-270cfb6e707b",
+				"method": "POST"
+			}
+		]
+	}
+}
