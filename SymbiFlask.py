@@ -568,4 +568,4 @@ api.add_resource(manage_HDL_file, '/file')
 api.add_resource(run_symbiflow, '/symbiflow')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)

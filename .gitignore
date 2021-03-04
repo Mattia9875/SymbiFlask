@@ -3,7 +3,6 @@ blink.v
 clk.xdc
 data.db
 led.xdc
-requirements.txt
 top.v
 .vscode/settings.json
 __pycache__/SymbiFlask.cpython-38.pyc
