@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
 from flask_marshmallow import Marshmallow
@@ -51,6 +51,7 @@ def SymbiflowHelper(data, mode):
     # run symbiflow
     res = RunSymbiFlow.delay(PART_NAME=PART_NAME, PRJ_DIR=PRJ_DIR, PRJ_DIR_HOST=PRJ_DIR_HOST, TOP_FILE=TOP_FILE, mode=mode)
     return res.id
+
 
 # FPGA entity
 class FPGA(db.Model):
@@ -557,11 +558,47 @@ class run_toolchain(Resource):
             return process_id, 202
 
 
+class retrieve_bitstream(Resource):
+    @staticmethod
+    def get():
+        try:
+            id = request.args['id']
+        except Exception as e:
+            return "Error: No project ID", 400
+
+        try:
+            Curr = os.getcwd()
+            prj_data = Project.query.get(id)
+            if not prj_data:
+                return "Error: The Project doesn't exist", 412
+            fpga_data = FPGA.query.get(prj_data.FPGA_id)
+            bitstream_path = os.path.join(Curr, prj_data.Project_name + "_" + fpga_data.model_id + "/build/symbiflow.bit")
+            if os.path.isfile(bitstream_path):
+                filename = prj_data.Project_name + "_" + fpga_data.model_id
+                return send_file(bitstream_path, attachment_filename=filename)
+            else:
+                return "Error: bitsream file does not exist", 412
+        except Exception as e:
+            return str(e), 500
+
+"""
+class clean_test(Resource):
+
+    @staticmethod
+    def delete():
+        db.drop_all()
+        os.system('sudo rm -rf counter_test_xc7a100t/')
+        db.create_all()
+        return "cleaned", 200
+"""
+
 # Setting website resources
 api.add_resource(manage_fpga, '/fpga')
 api.add_resource(manage_project, '/project')
 api.add_resource(manage_HDL_file, '/file')
 api.add_resource(run_toolchain, '/toolchain')
+api.add_resource(retrieve_bitstream, '/bitstream')
+# api.add_resource(clean_test, '/clean')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
