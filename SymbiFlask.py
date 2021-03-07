@@ -1,7 +1,9 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Resource, Api
 from flask_marshmallow import Marshmallow
+from celerytask import RunSymbiFlow
+from celery.result import AsyncResult
 import os, json, shutil
 
 app = Flask(__name__)
@@ -33,39 +35,22 @@ def RecursiveHDLDelete(query_id, dir_name):
         return
 
 
-# function to run bitstream generation
-def RunSymbiFlow(prj_id, mode=2):
-
+# function to set up symbiflow
+def SymbiflowHelper(data, mode):
     # gather data from the database
-    prj_data = Project.query.get(prj_id)
-    fpga_data = FPGA.query.get(prj_data.FPGA_id)
-    top_level = HDL_file.query.filter_by(Project_id=prj_id, top_level_flag=True).first()
+    fpga_data = FPGA.query.get(data.FPGA_id)
+    top_level = HDL_file.query.filter_by(Project_id=data.id, top_level_flag=True).first()
     # FPGA model
     PART_NAME = fpga_data.model_id
     # top level entity file
     TOP_FILE = top_level.file_name
     # container project folder
-    PRJ_DIR = os.path.join("/symb", prj_data.Project_name + "_" + fpga_data.model_id)
+    PRJ_DIR = os.path.join("/symb", data.Project_name + "_" + fpga_data.model_id)
     # host project folder
-    PRJ_DIR_HOST = os.path.join(os.getcwd(), prj_data.Project_name + "_" + fpga_data.model_id)
-    # create the docker cmd
-    cmd = ("docker run --rm -it"
-           " -e BOARD_MODEL=" + PART_NAME + " -e TOP_FILE=" + TOP_FILE + " -e PRJ_DIR=" + PRJ_DIR +
-           " -e MODE=" + str(mode) +
-           " --privileged -v /dev/bus/usb:/dev/bus/usb" + " -v " + PRJ_DIR_HOST + ":" + PRJ_DIR +
-           " symbiflow:" + PART_NAME)
-
-    # debug print
-    print(cmd)
-    try:
-        # execute the cmd
-        os.system(cmd)
-    except Exception as e:
-        print(e)
-        return True
-    else:
-        return False
-
+    PRJ_DIR_HOST = os.path.join(os.getcwd(), data.Project_name + "_" + fpga_data.model_id)
+    # run symbiflow
+    res = RunSymbiFlow.delay(PART_NAME=PART_NAME, PRJ_DIR=PRJ_DIR, PRJ_DIR_HOST=PRJ_DIR_HOST, TOP_FILE=TOP_FILE, mode=mode)
+    return res.id
 
 # FPGA entity
 class FPGA(db.Model):
@@ -527,14 +512,28 @@ class manage_HDL_file(Resource):
 
 
 # SymbiflowRunner
-class run_symbiflow(Resource):
+class run_toolchain(Resource):
+    @staticmethod
+    def get():
+        try:
+            process_id = request.args.get('id')
+            task_result = RunSymbiFlow.AsyncResult(process_id)
+            result = {
+                'task_id': process_id,
+                'task_status': task_result.status,
+                'task_result': task_result.result
+            }
+            return make_response(jsonify(result), 200)
+        except Exception as e:
+            print(e)
+            return "Error: no id for process status", 400
+
     @staticmethod
     def post():
-        try:
-            id = request.args['id']
-            mode = int(request.args['mode'])
-        except Exception as e:
-            id = None
+
+        id = request.json['id']
+        mode = request.json['mode']
+        toolchain = request.json['toolchain']
 
         if not id:
             return "Error: No ID for Project", 400
@@ -543,29 +542,23 @@ class run_symbiflow(Resource):
             if (mode != 0 and mode != 1):
                 print("No mode specified: Defaulting to 2")
                 mode = 2
-            # get project data
             data = Project.query.get(id)
             if not data:
                 return "Error: The Project doesn't exist", 412
-            # run symbiflow
-            check = RunSymbiFlow(id, mode)
-            if (int(mode) == 1):
-                if check:
-                    return "Error: Something went wrong during upload", 500
-                else:
-                    return "Success: Design uploaded without problems", 200
+
+            if (toolchain == "symbiflow"):
+                process_id = SymbiflowHelper(data, mode)
             else:
-                if check:
-                    return "Error: Something went wrong during configuration", 500
-                else:
-                    return "Success: Design compiled without problems", 201
+                return "Error: no toolchain selected", 400
+
+            return process_id, 202
 
 
 # Setting website resources
 api.add_resource(manage_fpga, '/fpga')
 api.add_resource(manage_project, '/project')
 api.add_resource(manage_HDL_file, '/file')
-api.add_resource(run_symbiflow, '/symbiflow')
+api.add_resource(run_toolchain, '/toolchain')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

@@ -3,3 +3,5 @@ flask-restful
 flask-sqlalchemy
 flask-marshmallow
 marshmallow-sqlalchemy
+celery
+redis
