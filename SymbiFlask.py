@@ -530,11 +530,12 @@ class run_toolchain(Resource):
 
     @staticmethod
     def post():
-
+        # get request payload
         id = request.json['id']
         mode = request.json['mode']
         toolchain = request.json['toolchain']
 
+        # check if id is present
         if not id:
             return "Error: No ID for Project", 400
         else:
@@ -542,15 +543,17 @@ class run_toolchain(Resource):
             if (mode != 0 and mode != 1):
                 print("No mode specified: Defaulting to 2")
                 mode = 2
+            # check if project data is present
             data = Project.query.get(id)
             if not data:
                 return "Error: The Project doesn't exist", 412
-
+            # toolchain selector
             if (toolchain == "symbiflow"):
                 process_id = SymbiflowHelper(data, mode)
             else:
                 return "Error: no toolchain selected", 400
 
+            #return the process id for later check
             return process_id, 202
 
 
