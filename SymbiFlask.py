@@ -16,6 +16,16 @@ db = SQLAlchemy(app)
 # marshmallow object
 ma = Marshmallow(app)
 
+#check if database exists
+def checkdatabase():
+    if os.path.exists("data.db"):
+        print("database file found")
+        return True
+    else:
+        print("database file non found, creating new")
+        db.create_all()
+        return False
+
 
 # function to recursively delete a project dir
 def RecursiveHDLDelete(query_id, dir_name):
@@ -601,4 +611,5 @@ api.add_resource(retrieve_bitstream, '/bitstream')
 # api.add_resource(clean_test, '/clean')
 
 if __name__ == '__main__':
+    checkdatabase()
     app.run(host='0.0.0.0',debug=True)
